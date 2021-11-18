@@ -1,49 +1,35 @@
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 #include "lists.h"
 
 /**
- * insert_node - inserts a new node
- * at a given position.
- * @head: head of a list.
- * @number: index of the list where the new node is
- * added.
- * Return: the address of the new node, or NULL if it
- * failed.
+ * main - check the code for
+ *
+ * Return: Always 0.
  */
-listint_t *insert_node(listint_t **head, int number)
+int main(void)
 {
-	listint_t *new;
-	listint_t *h;
-	listint_t *h_prev;
+    listint_t *head;
 
-	h = *head;
-	new = malloc(sizeof(listint_t));
+    head = NULL;
+    add_nodeint_end(&head, 0);
+    add_nodeint_end(&head, 1);
+    add_nodeint_end(&head, 2);
+    add_nodeint_end(&head, 3);
+    add_nodeint_end(&head, 4);
+    add_nodeint_end(&head, 98);
+    add_nodeint_end(&head, 402);
+    add_nodeint_end(&head, 1024);
+    print_listint(head);
 
-	if (new == NULL)
-		return (NULL);
+    printf("-----------------\n");
 
-	while (h != NULL)
-	{
-		if (h->n > number)
-			break;
-		h_prev = h;
-		h = h->next;
-	}
+    insert_node(&head, 27);
 
-	new->n = number;
+    print_listint(head);
 
-	if (*head == NULL)
-	{
-		new->next = NULL;
-		*head = new;
-	}
-	else
-	{
-		new->next = h;
-		if (h == *head)
-			*head = new;
-		else
-			h_prev->next = new;
-	}
+    free_listint(head);
 
-	return (new);
+    return (0);
 }
