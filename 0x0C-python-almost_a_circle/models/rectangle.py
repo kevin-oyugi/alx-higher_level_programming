@@ -76,3 +76,9 @@ class Rectangle(Base):
         rep = '\n' * self.y + \
             (' ' * self.x + '#' * self.width + '\n') * self.height
         print(rep, end='')
+
+    def _str_(self):
+        '''str info about a rectangle'''
+        return '[{}] ({}) {}/{} - {}/{}'. \
+            format(type(self)._name_, self.id, self.x, self.y, self.width,
+                   self.height)
